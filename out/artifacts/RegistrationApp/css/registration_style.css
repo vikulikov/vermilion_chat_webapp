@@ -1,0 +1,66 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body, html {
+    font-family: 'Roboto', sans-serif;
+}
+
+hr {
+    border: 1px solid grey;
+    margin-bottom: 25px;
+}
+
+body > form {
+    max-width: 75%;
+    margin: auto;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-width: 300px;
+}
+
+form label {
+    font-size: 14px;
+    font-weight: 600;
+    padding: 3px 0;
+}
+
+form input, select {
+    margin: 2px 0;
+    padding: 10px;
+    font-size: 15px;
+    border: none;
+    background: #f1f1f1;
+    border-radius: 5px;
+}
+
+form input:focus, select:focus {
+    background: #ddd;
+    outline: none;
+}
+
+form button {
+    background-color: black;
+    color: white;
+    font-size: 16px;
+    padding: 12px 18px;
+    margin: 8px 0;
+    cursor: pointer;
+    border: none;
+    opacity: 0.8;
+}
+
+form button:hover {
+    opacity: 1;
+}
+
+.error_message {
+    display: none;
+}
+
+
+
+
