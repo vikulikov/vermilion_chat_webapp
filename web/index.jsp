@@ -17,7 +17,7 @@
 <body>
 
     <header>
-        <form action="" method="post">
+        <form action="" method="post" id="my_form">
 
             <label for="email">E-mail:</label>
             <input class="input_field" type="email" id="email" name="email" placeholder="email@example.com" />
@@ -25,7 +25,7 @@
             <label for="password">Password:</label>
             <input class="input_field" type="password" id="password" name="password"/>
 
-            <button type="submit" onclick="sendUserData()">Log In</button>
+            <button type="submit">Log In</button>
         </form>
 
         <nav>
@@ -35,10 +35,11 @@
             </div>
         </nav>
 
-        <p class="error_message" id="invalid-user">${message}</p>
+        <p class="error_message" id="invalid-user"></p>
 
     </header>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script type="text/javascript" src="javascript/login_script.js"></script>
 
 <a href="client/WebSocketClient.html">Тест вебсокета</a>

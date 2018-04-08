@@ -33,7 +33,6 @@ header form {
 }
 
 .error_message {
-    display: none;
     color: red;
     font-size: 12px;
     text-align: center;
@@ -61,8 +60,4 @@ button {
 
     }
 
-}
-
-.shown {
-    display: block;
 }

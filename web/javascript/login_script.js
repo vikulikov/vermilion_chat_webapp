@@ -1,24 +1,26 @@
+$(document).ready(function() {
 
-function sendUserData() {
-    let email = document.getElementById("email").value;
-    let pswd = document.getElementById("password").value;
+    $("#my_form").on("submit", function(event) {
+        event.preventDefault();
 
-    if (email == "" || pswd == "" ) {
-        document.getElementById("invalid-user").innerText = "Please fill in all fields!";
-        document.getElementById("invalid-user").classList.add("shown");
-        console.log(email + password + "smth");
-    }
+        var email = $("#email").val();
+        var pswd = $("#password").val();
+        if ((email === "" || pswd === "") || (email == null || pswd == null)) {
+            $("#invalid-user").text("Please fill in all fields!");
+            return;
+        }
 
-    // let xhttp = new XMLHttpRequest();
-    //
-    // xhttp.onreadystatechange = function() {
-    //     if (this.readyState === 4 && this.status === 200) {
-    //         document.getElementById("invalid-user").innerText = this.responseText;
-    //     }
-    // };
-    //
-    // xhttp.open("POST", "", true);
-    // xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    // xhttp.send("email=" + email + "&password=" + pswd);
+        $.post("",
+            {
+                email: email,
+                password: pswd
+            },
+            function(message, status) {
+                console.log("Response status: " + status);
+                $("#invalid-user").text(message);
+            });
 
-}
+    });
+
+});
+

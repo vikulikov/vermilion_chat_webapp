@@ -23,7 +23,6 @@ public class InitServlet extends HttpServlet {
 
         if (!isAuthorized(sessionId, authorizedSessions)) {
             response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-            request.setAttribute("message", "");
             RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
             dispatcher.forward(request, response);
         } else {
@@ -45,7 +44,6 @@ public class InitServlet extends HttpServlet {
         Map<String, User> authorizedUsers = UserService.getInstance().getSessionIdToUser();
         UserDAO userDAO = UserService.getInstance().getUserDAO();
 
-
         Useful.printListElements(userDAO.findAllUsers());
         User user = userDAO.searchUserByEmail(email);
 
@@ -55,8 +53,9 @@ public class InitServlet extends HttpServlet {
             request.getSession().setAttribute("user", user);
             response.sendRedirect("profile?=" + user.getLogin());
         } else {
-            request.setAttribute("message", "Invalid e-mail or password. Please try once again.");
-            request.getRequestDispatcher("index.jsp").forward(request, response);
+            response.setCharacterEncoding("UTF-8");
+            response.setStatus(HttpServletResponse.SC_OK);
+            response.getWriter().write("There is not user with such e-mail and password. Please try once again.");
         }
     }
 
