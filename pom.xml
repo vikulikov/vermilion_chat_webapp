@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>ru.kulikov</groupId>
-    <artifactId>RegistrationApp</artifactId>
+    <artifactId>Vermilion</artifactId>
     <version>1.0.0</version>
 
     <build>
@@ -47,7 +47,7 @@
             <version>1.1</version>
             <scope>provided</scope>
         </dependency>
-
+        
     </dependencies>
 
 

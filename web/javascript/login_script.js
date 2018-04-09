@@ -5,20 +5,26 @@ $(document).ready(function() {
 
         var email = $("#email").val();
         var pswd = $("#password").val();
+        console.log(email + pswd);
         if ((email === "" || pswd === "") || (email == null || pswd == null)) {
             $("#invalid-user").text("Please fill in all fields!");
             return;
         }
 
-        $.post("",
-            {
-                email: email,
-                password: pswd
-            },
-            function(message, status) {
-                console.log("Response status: " + status);
-                $("#invalid-user").text(message);
-            });
+        $.ajax({
+            url:"",
+            type:"POST",
+            dataType:'json',
+            data: {email: email, password: pswd},
+            success: function(data){
+                if (data.redirect) {
+                    location.href = data.redirect;
+                } else {
+                    $("#invalid-user").text(data.message);
+                }
+            }
+
+        });
 
     });
 

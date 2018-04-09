@@ -1,6 +1,7 @@
 package servlets;
 
 import dao.UserDAO;
+import model.JSONHandler;
 import model.Useful;
 import model.User;
 import model.UserService;
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Map;
 
 public class InitServlet extends HttpServlet {
@@ -36,6 +38,7 @@ public class InitServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException {
+        request.setCharacterEncoding("UTF-8");
         String email = request.getParameter("email");
         String password = request.getParameter("password");
 
@@ -47,16 +50,21 @@ public class InitServlet extends HttpServlet {
         Useful.printListElements(userDAO.findAllUsers());
         User user = userDAO.searchUserByEmail(email);
 
+        JSONHandler JSONResponse = new JSONHandler();
         if (user != null && user.isPasswordValid(password)) {
             String sessionId = request.getSession().getId();
             authorizedUsers.put(sessionId, user);
             request.getSession().setAttribute("user", user);
-            response.sendRedirect("profile?=" + user.getLogin());
+            JSONResponse.appendData("redirect", "/profile?=" + user.getLogin());
         } else {
-            response.setCharacterEncoding("UTF-8");
-            response.setStatus(HttpServletResponse.SC_OK);
-            response.getWriter().write("There is not user with such e-mail and password. Please try once again.");
+            JSONResponse.appendData("message",
+                    "There is not user with such e-mail and password. Please try once again.");
         }
+
+        response.setContentType("application/json");
+        PrintWriter out = response.getWriter();
+        out.print(JSONResponse.getJSON());
+        out.flush();
     }
 
     public boolean isAuthorized(String sessionId, Map<String, User> sessionIdToUser) {
