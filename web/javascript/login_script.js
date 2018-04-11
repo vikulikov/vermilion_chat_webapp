@@ -18,7 +18,7 @@ $(document).ready(function() {
             data: {email: email, password: pswd},
             success: function(data){
                 if (data.redirect) {
-                    location.href = data.redirect;
+                    window.location.href = data.redirect;
                 } else {
                     $("#invalid-user").text(data.message);
                 }
