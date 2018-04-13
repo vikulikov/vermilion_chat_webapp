@@ -23,7 +23,12 @@ public class JSONHandler {
 
         result.append("{\n");
         for (String i : newMap.keySet()) {
-            result.append("\"").append(i).append("\": ").append("\"").append(newMap.get(i)).append("\"\n");
+            result.append("\"")
+                    .append(i)
+                    .append("\": ")
+                    .append("\"")
+                    .append(newMap.get(i))
+                    .append("\"\n");
         }
         result.append("}");
 

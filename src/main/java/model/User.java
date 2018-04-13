@@ -1,5 +1,8 @@
 package model;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class User {
     private long id;
     private String name;
@@ -100,6 +103,17 @@ public class User {
     private String toGender() {
         if (gender == 0) return "Male";
         return "Female";
+    }
+
+    public Map<String, Object> getUserPublicData() {
+        Map<String, Object> userData = new HashMap<>();
+        userData.put("name", name);
+        userData.put("last_name", lastName);
+        userData.put("login", login);
+        userData.put("email", email);
+        userData.put("gender", toGender());
+        userData.put("birthday", birthday);
+        return userData;
     }
 
     @Override
