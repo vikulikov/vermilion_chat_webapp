@@ -20,7 +20,7 @@ public class PageProcessor {
 
         try {
             config.setDirectoryForTemplateLoading(new File(
-                    "/home/vikulikov/Documents/projects/Vermilion_webapp/web/templates"));
+                    "D:\\Users\\vikul\\Documents\\Coding\\Projects\\Vermilion_webapp\\web\\templates"));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -43,6 +43,4 @@ public class PageProcessor {
         }
         return result.toString();
     }
-
-
 }
