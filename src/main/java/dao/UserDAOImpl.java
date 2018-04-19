@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserDAOImpl implements UserDAO {
-
     static {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -22,7 +21,7 @@ public class UserDAOImpl implements UserDAO {
                 .append("jdbc:mysql://")
                 .append("localhost:")
                 .append("3306/")
-                .append("registration?")
+                .append("vermilion?")
                 .append("autoReconnect=true&")
                 .append("useSSL=false&")
                 .append("useUnicode=true&")
@@ -76,19 +75,28 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public List<User> findAllUsers() {
-        String sqlRequest = "SELECT * FROM registration.users;";
+        String sqlRequest = "SELECT * FROM vermilion.users;";
         return getUsersWithRequest(sqlRequest);
     }
 
     @Override
     public List<User> searchUsersByName(String name) {
-        String sqlRequest = "SELECT * FROM registration.users WHERE name LIKE '" + name.trim() + "%';";
+        String sqlRequest = "SELECT * FROM vermilion.users WHERE name LIKE '" + name.trim() + "%';";
         return getUsersWithRequest(sqlRequest);
     }
 
     @Override
     public User searchUserByEmail(String email) {
-        String sqlRequest = "SELECT * FROM registration.users WHERE email = '" + email.trim() + "';";
+        String sqlRequest = "SELECT * FROM vermilion.users WHERE email = '" + email.trim() + "';";
+        List<User> users = getUsersWithRequest(sqlRequest);
+
+        if (users.isEmpty()) return null;
+        return users.get(0);
+    }
+
+    @Override
+    public User searchUserByLogin(String login) {
+        String sqlRequest = "SELECT * FROM vermilion.users WHERE login = '" + login.trim() + "';";
         List<User> users = getUsersWithRequest(sqlRequest);
 
         if (users.isEmpty()) return null;
@@ -97,7 +105,7 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public void addUser(User user) {
-        String sqlRequest = "INSERT INTO registration.users (name, last_name, email, login, password, gender, birthday)"
+        String sqlRequest = "INSERT INTO vermilion.users (name, last_name, email, login, password, gender, birthday)"
                 + " VALUES (?, ?, ?, ?, ?, ?, ?);";
 
         Connection connection = null;
@@ -127,8 +135,8 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public void deleteUser(Long id) {
-        String maxIdRequest = "SELECT MAX(id) FROM registration.users;";
-        String sqlRequest = "DELETE FROM registration.users WHERE id = " + id + ";";
+        String maxIdRequest = "SELECT MAX(id) FROM vermilion.users;";
+        String sqlRequest = "DELETE FROM vermilion.users WHERE id = " + id + ";";
 
         Connection connection = null;
         try {

@@ -1,12 +1,11 @@
 $(document).ready(function() {
 
-    $("#my_form").on("submit", function(event) {
+    $("#login_form").on("submit", function(event) {
         event.preventDefault();
 
-        var email = $("#email").val();
-        var pswd = $("#password").val();
-        console.log(email + pswd);
-        if ((email === "" || pswd === "") || (email == null || pswd == null)) {
+        let email = $("#email").val();
+        let pswd = $("#password").val();
+        if (email === "" || pswd === "") {
             $("#invalid-user").text("Please fill in all fields!");
             return;
         }
@@ -23,10 +22,7 @@ $(document).ready(function() {
                     $("#invalid-user").text(data.message);
                 }
             }
-
         });
-
     });
-
 });
 

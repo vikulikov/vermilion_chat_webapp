@@ -23,9 +23,6 @@ public class RegistrationServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-        request.setCharacterEncoding("UTF-8");
-
 //      ID equals to 0 due to it's unnecessarily while adding to database.
         User user = new User(0,
                 request.getParameter("first_name"),

@@ -41,14 +41,14 @@
     }
 
     function wsGetMessage(message) {
-        echoText.value += "Message received from the server : " + message.data + "\n";
+        echoText.value += message.data + "\n";
     }
 
     function wsClose(){
         echoText.value += "Disconnect ... \n";
     }
 
-    function wserror(){
+    function wsError(){
         echoText.value += "Error ... \n";
     }
 

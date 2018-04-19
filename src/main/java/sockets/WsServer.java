@@ -22,9 +22,10 @@ public class WsServer {
 
     @OnMessage
     public String onMessage(String message) {
-        System.out.println("Message from client" + message);
 
-        return "Message from server" + message;
+        System.out.println("Message from client: " + message);
+
+        return "Message sent from server: " + message;
     }
 
     @OnError

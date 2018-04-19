@@ -38,7 +38,6 @@ public class InitServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws IOException {
-        request.setCharacterEncoding("UTF-8");
         String email = request.getParameter("email");
         String password = request.getParameter("password");
 
@@ -55,7 +54,7 @@ public class InitServlet extends HttpServlet {
             String sessionId = request.getSession().getId();
             authorizedUsers.put(sessionId, user);
             request.getSession().setAttribute("user", user);
-            JSONResponse.appendData("redirect", "/profile");
+            JSONResponse.appendData("redirect", "profile");
         } else {
             JSONResponse.appendData("message",
                     "There is not user with such e-mail and password. Please try once again.");

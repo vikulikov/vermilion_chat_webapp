@@ -42,7 +42,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script type="text/javascript" src="javascript/login_script.js"></script>
 
-<a href="client/WebSocketClient.html">Тест вебсокета</a>
+    <a href="client/WebSocketClient.html">Тест вебсокета</a>
 
 </body>
 </html>

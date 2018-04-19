@@ -3,6 +3,16 @@
     padding: 0;
 }
 
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+#pseudo-body {
+    max-width: 65%;
+    margin: auto;
+    display: block;
+}
+
 div {
     display: flex;
 }
@@ -11,20 +21,17 @@ div {
     max-height: 235px;
 }
 
-.column_view {
+.column-view {
     flex-direction: column;
 }
 
 #main-container {
     justify-content: space-between;
-    max-width: 75%;
-    min-width: 370px;
-    margin: auto;
-    padding: 20px;
+    padding: 10px;
 }
 
 #photo-container {
-    align-items: center;
+    justify-content: center;
 }
 
 .hidden {
@@ -32,8 +39,9 @@ div {
 }
 
 label[for="info"], label[for="friends-info"] {
-    font-weight: 700;
-    margin-bottom: 10px;
+    font-weight: 600;
+    font-size: 14px;
+    padding: 3px 0;
 }
 
 #info {
@@ -41,13 +49,21 @@ label[for="info"], label[for="friends-info"] {
 }
 
 p {
-    font-size: 14px;
+    margin: 2px 0;
+    padding: 10px;
+    font-size: 12px;
+    background: #f1f1f1;
+    border-radius: 2px;
+}
+
+#photo-container button {
+    display: block;
+    width: 100%;
 }
 
 
 @media screen and (max-width: 768px) {
     #main-container {
-        max-width: 65%;
         justify-content: center;
         flex-direction: column;
         align-items: center;
@@ -56,6 +72,5 @@ p {
 
 @media screen and (min-width: 900px) {
     #main-container {
-        max-width: 55%;
     }
 }

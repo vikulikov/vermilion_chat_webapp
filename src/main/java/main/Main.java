@@ -4,9 +4,6 @@ import dao.UserDAO;
 import dao.UserDAOImpl;
 import model.User;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class Main {
     private static UserDAO userDAO = new UserDAOImpl();
 
@@ -15,8 +12,6 @@ public class Main {
             System.out.println(user);
         }
 
-        Map<String, Object> data = new HashMap<>();
-        data.put("login", "Hello");
 
     }
 }
