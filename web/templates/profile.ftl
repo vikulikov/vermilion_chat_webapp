@@ -7,6 +7,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/profile_style.css">
     <link rel="stylesheet" href="../css/main_layout_style.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto"/>
@@ -60,7 +61,8 @@
     </div>
 
     <#if guest_type == "stranger">
-        <script rel="script" src="../javascript/login_script.js"></script>
+        <script type="text/javascript" src="../javascript/jquery-3.3.1.min.js"></script>
+        <script type="text/javascript" src="../javascript/login_script.js"></script>
     </#if>
 
 </body>

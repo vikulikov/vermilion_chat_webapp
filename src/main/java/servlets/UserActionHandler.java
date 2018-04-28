@@ -21,8 +21,7 @@ public class UserActionHandler extends HttpServlet {
 
         if (actionValue.equals("delete")) {
             Map<String, User> authorizedUsers = UserService.getInstance().getSessionIdToUser();
-            authorizedUsers.remove(session.getId());
-            session.removeAttribute("user");
+            InitServlet.logOutUser(authorizedUsers, session);
             response.sendRedirect("/");
         }
     }

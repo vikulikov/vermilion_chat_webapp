@@ -10,14 +10,15 @@
 
     <div id="sidebar">
         <nav>
-            <form>
+            <form id="login_form">
                 <label for="login">Login</label>
-                <input type="text" name="email" id="login">
+                <input type="email" name="email" id="email">
                 <label for="password">Password</label>
                 <input type="password" name="password" id="password">
-                <button formaction="/" formmethod="post">Log In</button>
+                <input type="submit" value="Log In">
                 <button formaction="registration" formmethod="post">Registration</button>
             </form>
+            <p id="invalid-user"></p>
         </nav>
     </div>
 <#else>
@@ -26,7 +27,7 @@
             <h1>Vermilion</h1>
         </div>
         <div id="header-buttons">
-            <form id="exit" action="useraction" method="post">
+            <form id="exit" action="/useraction" method="post">
                 <button name="action" value="delete">Log out</button>
             </form>
         </div>
@@ -38,7 +39,7 @@
             <a href="#" class="sidebar-link">Edit Profile</a>
             <a href="#" class="sidebar-link">Friends</a>
             <a href="#" class="sidebar-link">Messages</a>
-            <a href="#" class="sidebar-link">All Users</a>
+            <a href="/users" class="sidebar-link">All Users</a>
         </nav>
     </div>
 </#if>

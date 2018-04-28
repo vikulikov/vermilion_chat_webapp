@@ -9,6 +9,7 @@
 <html>
 <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/login_style.css" />
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" />
 
@@ -17,7 +18,7 @@
 <body>
 
     <header>
-        <form action="" method="post" id="my_form">
+        <form action="" method="post" id="login_form">
 
             <label for="email">E-mail:</label>
             <input class="input_field" type="email" id="email" name="email" placeholder="email@example.com" />
@@ -39,7 +40,7 @@
 
     </header>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="javascript/jquery-3.3.1.min.js"></script>
     <script type="text/javascript" src="javascript/login_script.js"></script>
 
     <a href="client/WebSocketClient.html">Тест вебсокета</a>

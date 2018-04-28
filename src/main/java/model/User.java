@@ -113,6 +113,7 @@ public class User {
         userData.put("email", email);
         userData.put("gender", toGender());
         userData.put("birthday", birthday);
+        userData.put("id", id);
         return userData;
     }
 

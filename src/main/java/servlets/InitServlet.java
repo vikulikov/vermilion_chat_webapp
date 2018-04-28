@@ -11,6 +11,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Map;
@@ -41,8 +42,6 @@ public class InitServlet extends HttpServlet {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
 
-        System.out.println(email + " " + password);
-
         Map<String, User> authorizedUsers = UserService.getInstance().getSessionIdToUser();
         UserDAO userDAO = UserService.getInstance().getUserDAO();
 
@@ -51,14 +50,13 @@ public class InitServlet extends HttpServlet {
 
         JSONHandler JSONResponse = new JSONHandler();
         if (user != null && user.isPasswordValid(password)) {
-            String sessionId = request.getSession().getId();
-            authorizedUsers.put(sessionId, user);
-            request.getSession().setAttribute("user", user);
+            logInUser(request, authorizedUsers, user);
             JSONResponse.appendData("redirect", "profile");
         } else {
             JSONResponse.appendData("message",
                     "There is not user with such e-mail and password. Please try once again.");
         }
+        System.out.println(JSONResponse.getJSON());
 
         response.setContentType("application/json");
         PrintWriter out = response.getWriter();
@@ -68,5 +66,24 @@ public class InitServlet extends HttpServlet {
 
     public boolean isAuthorized(String sessionId, Map<String, User> sessionIdToUser) {
         return  sessionIdToUser.containsKey(sessionId);
+    }
+
+    static void logInUser(HttpServletRequest request,
+                          Map<String, User> authorizedUsers,
+                          User user) {
+        HttpSession session = request.getSession();
+
+        if (session.getAttribute("user") != null) {
+            logOutUser(authorizedUsers, session);
+        }
+
+        authorizedUsers.put(session.getId(), user);
+        request.getSession().setAttribute("user", user);
+
+    }
+
+    static void logOutUser(Map<String, User> authorizedUsers, HttpSession session) {
+        authorizedUsers.remove(session.getId());
+        session.removeAttribute("user");
     }
 }

@@ -9,11 +9,10 @@ public class Message {
     private String content;
     private Timestamp creationTime;
 
-    public Message(long chatId, long authorId, String content, Timestamp creationTime) {
+    public Message(long chatId, long authorId, String content) {
         this.chatId = chatId;
         this.authorId = authorId;
         this.content = content;
-        this.creationTime = creationTime;
     }
 
     public long getId() {
@@ -38,5 +37,9 @@ public class Message {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public void setCreationTime(Timestamp creationTime) {
+        this.creationTime = creationTime;
     }
 }

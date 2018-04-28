@@ -10,14 +10,20 @@ $(document).ready(function() {
             return;
         }
 
+
         $.ajax({
-            url:"",
+            url:"/",
             type:"POST",
             dataType:'json',
             data: {email: email, password: pswd},
-            success: function(data){
+            success: function(data) {
                 if (data.redirect) {
-                    window.location.href = data.redirect;
+                    if (location.pathname === "/") {
+                        location.href = data.redirect;
+                    } else {
+                        location.reload(true)
+                    }
+
                 } else {
                     $("#invalid-user").text(data.message);
                 }

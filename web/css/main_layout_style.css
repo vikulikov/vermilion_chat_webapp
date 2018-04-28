@@ -20,9 +20,10 @@ nav > a {
     text-decoration: none;
 }
 
-
 #sidebar {
     float: left;
+    overflow: hidden;
+    height: 100%;
 }
 
 nav {
@@ -34,7 +35,7 @@ nav {
     /*width: 50%;*/
 }
 
-button {
+button, input[type="submit"] {
     background-color: black;
     color: white;
     font-size: 16px;
@@ -44,7 +45,7 @@ button {
     opacity: 0.8;
 }
 
-button:hover {
+button:hover, input[type="submit"]:hover {
     opacity: 1;
 }
 

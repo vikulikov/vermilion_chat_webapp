@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Map;
 
 @WebServlet(name = "RegistrationServlet", urlPatterns = {"/registration"})
 public class RegistrationServlet extends HttpServlet {
@@ -22,7 +23,7 @@ public class RegistrationServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws IOException {
 //      ID equals to 0 due to it's unnecessarily while adding to database.
         User user = new User(0,
                 request.getParameter("first_name"),
@@ -36,20 +37,9 @@ public class RegistrationServlet extends HttpServlet {
         UserDAO userDAO = UserService.getInstance().getUserDAO();
         userDAO.addUser(user);
 
-//      Send request to InitServlet to Log In automatically after registration
-        clearParameters(request);
-        request.getRequestDispatcher("").forward(request, response);
+        Map<String, User> authorizedUsers = UserService.getInstance().getSessionIdToUser();
+        InitServlet.logInUser(request, authorizedUsers, user);
+        response.sendRedirect("profile?=" + user.getLogin());
+        response.setStatus(HttpServletResponse.SC_OK);
     }
-
-    private void clearParameters(HttpServletRequest request) {
-//      Only email and password will be left
-        request.setAttribute("first_name", "");
-        request.setAttribute("login", "");
-        request.setAttribute("last_name", "");
-        request.setAttribute("gender", "");
-        request.setAttribute("birthday", "");
-    }
-
-
-
 }
