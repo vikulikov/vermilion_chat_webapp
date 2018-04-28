@@ -21,17 +21,31 @@ public class JSONHandler {
     public String getJSON(Map<String, String> newMap) {
         StringBuilder result = new StringBuilder();
 
-        result.append("{\n");
+        result.append("{");
         for (String i : newMap.keySet()) {
             result.append("\"")
                     .append(i)
                     .append("\": ")
                     .append("\"")
                     .append(newMap.get(i))
-                    .append("\"\n");
+                    .append("\",");
         }
+        result.deleteCharAt(result.length()-1); // deleting last comma
         result.append("}");
-
+        System.out.println(result);
         return result.toString();
+
+
+    }
+
+    public Map<String, String> parse(String JSONString) {
+        String[] rawData = JSONString.split("\"");
+        for (int i = 1; i < rawData.length - 1;) {
+            if (i % 2 == 1) {
+                data.put(rawData[i], rawData[i+2]);
+                i += 4;
+            }
+        }
+        return data;
     }
 }
